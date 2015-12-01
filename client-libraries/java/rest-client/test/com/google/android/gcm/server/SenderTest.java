@@ -850,7 +850,7 @@ public class SenderTest {
     setResponseExpectations(200, responseBody);
     HttpURLConnection response =
         sender.post(Constants.GCM_SEND_ENDPOINT, requestBody);
-    assertEquals(requestBody, new String(outputStream.toByteArray()));
+    assertEquals(requestBody, outputStream.toString("UTF-8"));
     verify(mockedConn).setRequestMethod("POST");
     verify(mockedConn).setFixedLengthStreamingMode(requestBody.getBytes("UTF-8").length);
     verify(mockedConn).setRequestProperty("Content-Type",
@@ -866,7 +866,7 @@ public class SenderTest {
     setResponseExpectations(200, responseBody);
     HttpURLConnection response =
         sender.post(Constants.GCM_SEND_ENDPOINT, "stuff", requestBody);
-    assertEquals(requestBody, new String(outputStream.toByteArray()));
+    assertEquals(requestBody, outputStream.toString("UTF-8"));
     verify(mockedConn).setRequestMethod("POST");
     verify(mockedConn).setFixedLengthStreamingMode(requestBody.getBytes("UTF-8").length);
     verify(mockedConn).setRequestProperty("Content-Type", "stuff");
